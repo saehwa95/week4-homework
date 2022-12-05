@@ -1,20 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { addTodo } from "../redux/modules/todos";
 
 const Create = () => {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const { todos } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const addSubmit = (event) => {
+    event.preventDefault();
+    dispatch(addTodo({ id: todos.length + 1, title, content, isDone: true }));
+  };
+
   return (
     <CreateBox>
-      <FormBox>
+      <FormBox onSubmit={addSubmit}>
         <TitleBox>
           <label>
             <StSpan>제목</StSpan>
-            <StInput type="text" />
+            <StInput
+              type="text"
+              name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </label>
         </TitleBox>
         <ContentBox>
           <label>
             <StSpan>내용</StSpan>
-            <StInput type="text" />
+            <StInput
+              type="text"
+              name="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
           </label>
         </ContentBox>
         <AddBtn type="submit">추가하기</AddBtn>
@@ -30,7 +52,6 @@ const CreateBox = styled.div`
   height: 100px;
   margin-top: 30px;
   border: 2px solid #008080;
-
   display: flex;
   justify-content: space-around;
   font-size: 20px;
@@ -70,4 +91,5 @@ const AddBtn = styled.button`
   background-color: #008080;
   color: white;
   margin-left: 50px;
+  cursor: pointer;
 `;
