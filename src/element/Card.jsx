@@ -16,33 +16,26 @@ const Card = ({ todo }) => {
   };
 
   return (
-    <BoxWrap>
-      <CardBox>
-        <StLink to={`detail/${todo.id}`}>
-          <DetailLink>상세보기</DetailLink>
-        </StLink>
-        <Content>
-          <TitleSpan>{todo.title}</TitleSpan>
-          <ContentSpan>{todo.content}</ContentSpan>
-        </Content>
-        <BtnBox>
-          <RedBtn onClick={deleteBtn}>삭제하기</RedBtn>
-          <GreenBtn onClick={editBtn}>
-            {todo.isDone ? "완료하기" : "취소하기"}
-          </GreenBtn>
-        </BtnBox>
-      </CardBox>
-    </BoxWrap>
+    <CardBox>
+      <StLink to={`detail/${todo.id}`}>
+        <DetailLink>상세보기</DetailLink>
+      </StLink>
+      <Content>
+        <TitleSpan>{todo.title}</TitleSpan>
+        <ContentSpan>{todo.content}</ContentSpan>
+      </Content>
+      <BtnBox>
+        <RedBtn onClick={deleteBtn}>삭제하기</RedBtn>
+        <GreenBtn onClick={editBtn}>
+          {todo.isDone ? "완료하기" : "취소하기"}
+        </GreenBtn>
+      </BtnBox>
+    </CardBox>
   );
 };
 
 export default Card;
 
-const BoxWrap = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 70px;
-`;
 const CardBox = styled.div`
   display: flex;
   justify-content: center;

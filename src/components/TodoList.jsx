@@ -11,15 +11,24 @@ const TodoList = () => {
       <div>
         <h1>공부 해보자✍️</h1>
       </div>
-      {todos?.map((todo) => {
-        return todo.isDone ? <Card key={`card${todo.id}`} todo={todo}/> : null
-      })}
+      <BoxWrap>
+        {todos?.map((todo) => {
+          return todo.isDone ? (
+            <Card key={`card${todo.id}`} todo={todo} />
+          ) : null;
+        })}
+      </BoxWrap>
+
       <div>
         <h1>공부 해냈다🧑‍🎓</h1>
       </div>
-      {todos?.map((todo) => {
-        return !todo.isDone ? <Card key={`card${todo.id}`} todo={todo}/> : null;
-      })}
+      <BoxWrap>
+        {todos?.map((todo) => {
+          return !todo.isDone ? (
+            <Card key={`card${todo.id}`} todo={todo} />
+          ) : null;
+        })}
+      </BoxWrap>
     </ListWrap>
   );
 };
@@ -31,3 +40,9 @@ const ListWrap = styled.div`
   width: 1200px;
   margin-left: 20px;
 `;
+
+const BoxWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+`
