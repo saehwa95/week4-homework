@@ -5,10 +5,7 @@ import Card from "../element/Card";
 
 const TodoList = () => {
   const { todos } = useSelector((state) => state);
-  
-  // 1 
-  console.log("isDone 변하니? : ", todos)
-  
+
   return (
     <ListWrap>
       <div>

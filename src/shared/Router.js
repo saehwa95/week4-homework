@@ -11,7 +11,6 @@ const Router = () => {
         <Route path="/" element={<Main />} />
         <Route path="detail" element={<Detail />} />
         <Route path="detail/:id" element={<Detail />} />
-        {/* 클라이언트 오류 방지를 위한 일종의 404 페이지 */}
         <Route path="/*" element={<Error />} />
       </Routes>
     </BrowserRouter>

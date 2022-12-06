@@ -8,16 +8,10 @@ const Card = ({ todo }) => {
   const dispatch = useDispatch();
 
   const editBtn = () => {
-    // 함수가 실행되었는지 확인하기 위한 콘솔
-    // 2
-    console.log("edit 버튼 실행 : ");
-    // 3 
-    console.log("id 값이 제대로 들어가고 있니? : ", todo.id);
     dispatch(toggleStatusTodo(todo.id));
   };
 
   const deleteBtn = () => {
-    // deleteTodo(todo.id) 는 함수가 아닌 값이다!!!
     dispatch(deleteTodo(todo.id));
   };
 
@@ -41,8 +35,6 @@ const Card = ({ todo }) => {
     </BoxWrap>
   );
 };
-// 데이터 확인하는 습관 콘솔
-// 데이터 타입이 무엇인지? 상태 확인 필요
 
 export default Card;
 
