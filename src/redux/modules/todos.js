@@ -5,6 +5,7 @@ const TOGGLE_STATUS_TODO = "TOGGLE_STATUS_TODO";
 const GET_TODO_BY_ID = "GET_TODO_BY_ID";
 
 // 액션 크리에이터
+// dispatch 하는 곳에서 사용하기 위해 export 해야함
 export const addTodo = (payload) => {
   return {
     type: ADD_TODO,
@@ -20,6 +21,8 @@ export const deleteTodo = (payload) => {
 };
 
 export const toggleStatusTodo = (payload) => {
+  // 4
+  console.log("todo.id 가 제대로 들어오고 있니? : ", payload);
   return {
     type: TOGGLE_STATUS_TODO,
     payload,
@@ -35,30 +38,37 @@ export const getTodoById = (payload) => {
 
 // 초기값
 const initialState = [
-  { id: 1, title: "리액트", content: "리액트를 배워봅시다.", isDone: true },
+  {
+    id: 1,
+    title: "리액트",
+    content: "리액트를 배워봅시다.",
+    isDone: true,
+  },
 ];
 
 // 리듀서
 const todos = (state = initialState, action) => {
-
   switch (action.type) {
     case ADD_TODO: {
       return [...state, action.payload];
     }
 
     case DELETE_TODO: {
-      return (state.filter((todo) => todo.id !== action.payload));
+      return state.filter((todo) => todo.id !== action.payload);
     }
 
     case TOGGLE_STATUS_TODO: {
-      return [
-        ...state,
-        state.todos.map((todo) => {
-          return todo.id === action.payload
-            ? { ...todo, isDone: !todo.isDone }
-            : todos;
-        }),
-      ];
+      // 5
+      console.log("action이 제대로 리듀서까지 오고있는지 ? : ", action);
+
+      // 6
+      console.log("state 값을 확인해서 어떻게 활용할지 봐보자! : ", state);
+
+      return state.map((todo) => {
+        return todo.id === action.payload
+          ? { ...todo, isDone: !todo.isDone }
+          : todo;
+      });
     }
 
     case GET_TODO_BY_ID: {

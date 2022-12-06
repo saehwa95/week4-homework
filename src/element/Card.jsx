@@ -2,15 +2,25 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { deleteTodo } from "../redux/modules/todos";
+import { deleteTodo, toggleStatusTodo } from "../redux/modules/todos";
 
 const Card = ({ todo }) => {
   const dispatch = useDispatch();
 
+  const editBtn = () => {
+    // 함수가 실행되었는지 확인하기 위한 콘솔
+    // 2
+    console.log("edit 버튼 실행 : ");
+    // 3 
+    console.log("id 값이 제대로 들어가고 있니? : ", todo.id);
+    dispatch(toggleStatusTodo(todo.id));
+  };
+
   const deleteBtn = () => {
+    // deleteTodo(todo.id) 는 함수가 아닌 값이다!!!
     dispatch(deleteTodo(todo.id));
   };
-  
+
   return (
     <BoxWrap>
       <CardBox>
@@ -23,14 +33,16 @@ const Card = ({ todo }) => {
         </Content>
         <BtnBox>
           <RedBtn onClick={deleteBtn}>삭제하기</RedBtn>
-          <GreenBtn>{todo.isDone ? "완료하기" : "취소하기"}</GreenBtn>
+          <GreenBtn onClick={editBtn}>
+            {todo.isDone ? "완료하기" : "취소하기"}
+          </GreenBtn>
         </BtnBox>
       </CardBox>
     </BoxWrap>
   );
 };
 // 데이터 확인하는 습관 콘솔
-// 데이터 타입이 무엇인지? 상태 확인 필요 
+// 데이터 타입이 무엇인지? 상태 확인 필요
 
 export default Card;
 

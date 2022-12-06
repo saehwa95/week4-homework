@@ -6,8 +6,8 @@ import styled from "styled-components";
 const Detail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const getTodoById = useSelector((state) => state.todos);
-  const detailTodo = getTodoById.filter((todo) => todo.id === +id)[0];
+  const todoList = useSelector((state) => state.todos);
+  const detailTodo = todoList.filter((todo) => todo.id === +id)[0];
 
   return (
     <DetailWrapper>
