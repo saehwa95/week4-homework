@@ -1,14 +1,19 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const Detail = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const getTodoById = useSelector((state) => state.todos);
+  const detailTodo = getTodoById.filter((todo) => todo.id === +id)[0];
+
   return (
     <DetailWrapper>
       <DetailBox>
         <DetailHeader>
-          <div>ID : 1</div>
+          <div>ID : {detailTodo.id}</div>
           <DetailBtn
             onClick={() => {
               navigate("/");
@@ -17,8 +22,8 @@ const Detail = () => {
             이전으로
           </DetailBtn>
         </DetailHeader>
-        <TitleSpan>제목</TitleSpan>
-        <ContentSpan>내용</ContentSpan>
+        <TitleSpan>{detailTodo.title}</TitleSpan>
+        <ContentSpan>{detailTodo.content}</ContentSpan>
       </DetailBox>
     </DetailWrapper>
   );

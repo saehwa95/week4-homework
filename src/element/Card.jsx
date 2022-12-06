@@ -6,7 +6,7 @@ const Card = ({ todo }) => {
   return (
     <BoxWrap>
       <CardBox>
-        <StLink to={`../pages/detail/${todo.id}`}>
+        <StLink to={`detail/${todo.id}`}>
           <DetailLink>상세보기</DetailLink>
         </StLink>
         <Content>

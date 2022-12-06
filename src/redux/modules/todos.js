@@ -35,7 +35,7 @@ export const getTodoById = (payload) => {
 
 // 초기값
 const initialState = [
-  { id: 0, title: "리액트", content: "리액트를 배워봅시다.", isDone: true },
+  { id: 1, title: "리액트", content: "리액트를 배워봅시다.", isDone: true },
 ];
 
 // 리듀서
@@ -46,21 +46,27 @@ const todos = (state = initialState, action) => {
     }
 
     case DELETE_TODO: {
-      return [state.filter((todos) => todos.id !== action.id)];
+      return [...state, state.filter((todo) => todo.id !== action.id)];
     }
 
     case TOGGLE_STATUS_TODO: {
       return [
-        state.map((todos) => {
-          return todos.id === action.id
-            ? { ...todos, isDone: !todos.isDone }
+        ...state,
+        state.todos.map((todo) => {
+          return todo.id === action.id
+            ? { ...todo, isDone: !todo.isDone }
             : todos;
         }),
       ];
     }
 
     case GET_TODO_BY_ID: {
-      return [...state];
+      return [
+        ...state,
+        state.todos.find((todo) => {
+          return todo.id === action.payload;
+        }),
+      ];
     }
 
     default:
