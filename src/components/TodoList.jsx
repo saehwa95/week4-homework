@@ -9,17 +9,17 @@ const TodoList = () => {
   return (
     <ListWrap>
       <div>
-        <h1>해내자!</h1>
+        <h1>공부 해보자✍️</h1>
       </div>
       {todos?.map((todo) => {
-        return todo.isDone ? <Card key={`card${todo.id}`} todo={todo}/> : null;
+        return todo.isDone ? <Card key={`card${todo.id}`} todo={todo}/> : null
       })}
       <div>
-        <h1>해냈다!</h1>
+        <h1>공부 해냈다🧑‍🎓</h1>
       </div>
-      {todos?.map((todo) => {
+      {/* {todos?.map((todo) => {
         return !todo.isDone ? <Card key={`card${todo.id}`} todo={todo}/> : null;
-      })}
+      })} */}
     </ListWrap>
   );
 };

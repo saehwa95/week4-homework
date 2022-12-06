@@ -40,20 +40,21 @@ const initialState = [
 
 // 리듀서
 const todos = (state = initialState, action) => {
+
   switch (action.type) {
     case ADD_TODO: {
       return [...state, action.payload];
     }
 
     case DELETE_TODO: {
-      return [...state, state.filter((todo) => todo.id !== action.id)];
+      return (state.filter((todo) => todo.id !== action.payload));
     }
 
     case TOGGLE_STATUS_TODO: {
       return [
         ...state,
         state.todos.map((todo) => {
-          return todo.id === action.id
+          return todo.id === action.payload
             ? { ...todo, isDone: !todo.isDone }
             : todos;
         }),

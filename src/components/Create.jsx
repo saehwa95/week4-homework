@@ -12,6 +12,8 @@ const Create = () => {
   const addSubmit = (event) => {
     event.preventDefault();
     dispatch(addTodo({ id: todos.length + 1, title, content, isDone: true }));
+    setTitle("")
+    setContent("")
   };
 
   return (

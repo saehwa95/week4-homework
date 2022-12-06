@@ -1,8 +1,16 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { deleteTodo } from "../redux/modules/todos";
 
 const Card = ({ todo }) => {
+  const dispatch = useDispatch();
+
+  const deleteBtn = () => {
+    dispatch(deleteTodo(todo.id));
+  };
+  
   return (
     <BoxWrap>
       <CardBox>
@@ -14,13 +22,15 @@ const Card = ({ todo }) => {
           <ContentSpan>{todo.content}</ContentSpan>
         </Content>
         <BtnBox>
-          <RedBtn>삭제하기</RedBtn>
+          <RedBtn onClick={deleteBtn}>삭제하기</RedBtn>
           <GreenBtn>{todo.isDone ? "완료하기" : "취소하기"}</GreenBtn>
         </BtnBox>
       </CardBox>
     </BoxWrap>
   );
 };
+// 데이터 확인하는 습관 콘솔
+// 데이터 타입이 무엇인지? 상태 확인 필요 
 
 export default Card;
 
